@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "294791815308",
+    "project_id": "buy-daily",
+    "storage_bucket": "buy-daily.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294791815308:android:a81d8e7449d8dc73a41ba9",
+        "android_client_info": {
+          "package_name": "com.buydaily.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294791815308-46jrr48pnn1e00flktvikgm0h8h5td3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIopzW2F4o_YHdBH2tGsb6TlRSSIDg4pQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294791815308-46jrr48pnn1e00flktvikgm0h8h5td3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
