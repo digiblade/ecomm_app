@@ -5,12 +5,12 @@ class SolidButton extends StatelessWidget {
   final Function()? onPressed;
   final String label;
   final Color color;
-  const SolidButton(
-      {Key? key,
-      required this.onPressed,
-      this.label = "",
-      this.color = primary})
-      : super(key: key);
+  SolidButton({
+    Key? key,
+    required this.onPressed,
+    this.label = "",
+    this.color = primary,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

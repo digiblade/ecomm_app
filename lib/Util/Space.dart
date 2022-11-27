@@ -19,3 +19,11 @@ class HorizontalSpace extends StatelessWidget {
     return SizedBox(width: space);
   }
 }
+
+limitString(String str, int limit) {
+  if (str.length > limit) {
+    return "${str.substring(0, limit - 3)} ...";
+  } else {
+    return str;
+  }
+}

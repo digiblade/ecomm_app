@@ -3,6 +3,15 @@ import 'package:ecommerce/Auth/LoginPage.dart';
 import 'package:ecommerce/Auth/RegistrationPage.dart';
 import 'package:ecommerce/Components/Sections/product_section.dart';
 import 'package:ecommerce/Models/CategoryModel.dart';
+import 'package:ecommerce/Models/DrawerPage.dart';
+import 'package:ecommerce/Page/404page.dart';
+import 'package:ecommerce/Page/address_page.dart';
+import 'package:ecommerce/Page/cart_page.dart';
+import 'package:ecommerce/Page/category_page.dart';
+import 'package:ecommerce/Page/checkout_page.dart';
+import 'package:ecommerce/Page/order_page.dart';
+import 'package:ecommerce/Page/order_response_page.dart';
+import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'Components/Banner/custom_banner_static.dart';
@@ -32,13 +41,32 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: WaitingPage(),
-      routes: {
-        "/app": (context) => const MyHomePage(title: "Home"),
-        "/login": (context) => const LoginPage(),
-        "/registration": (context) => const RegistrationPage(),
-        "/productpage": (context) => ProductPage(),
-        "/googlemap": (context) => GoogleMapPage(),
+      onGenerateRoute: (RouteSettings settings) {
+        var routes = <String, WidgetBuilder>{
+          "/app": (context) => const MyHomePage(title: "Home"),
+          "/login": (context) => const LoginPage(),
+          "/registration": (context) => const RegistrationPage(),
+          "/productpage": (context) => ProductPage(),
+          "/cartpage": (context) => const CartPage(),
+          "/addresspage": (context) => const AddressPage(),
+          "/checkoutpage": (context) => const CheckoutPage(),
+          "/responsesuccesspage": (context) => OrderResponsePage(
+                type: "success",
+              ),
+          "/responsefailpage": (context) => OrderResponsePage(type: "failure"),
+          "/responseerrorpage": (context) => OrderResponsePage(),
+          "/googlemap": (context) => GoogleMapPage(),
+          "/categoryPage": (context) =>
+              CategoryProductPage(cat: settings.arguments as CategoryModel),
+          "/viewOrderPage": ((context) => const DisplayOrderPage())
+        };
+        WidgetBuilder? builder = routes[settings.name!];
+
+        return MaterialPageRoute(
+            builder: (ctx) =>
+                builder != null ? builder(ctx) : const NotFoundPage());
       },
+      routes: {},
     );
   }
 }
@@ -68,8 +96,8 @@ class _WaitingPageState extends State<WaitingPage> {
 
   checkLogin() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    bool? isLoggedIn = pref.getBool("isLoggedIn");
-    if (isLoggedIn!) {
+    bool? isLoggedIn = pref.getBool("isLoggedIn") ?? false;
+    if (isLoggedIn) {
       setState(() {
         isAuthorized = true;
       });
@@ -128,57 +156,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      appBar: AppBar(backgroundColor: secondary),
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Column(
-                children: const [
-                  CircleAvatar(
-                    child: Center(
-                      child: Icon(
-                        Icons.supervised_user_circle,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "User 1",
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const DrawerPage(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomAppBar(
-                onDrawerOpen: () {
-                  _scaffoldKey.currentState!.openDrawer();
-                },
-              ),
-              const CustomBannerStatic(),
+              // const CustomBannerStatic(),
               if (isLoading)
                 const Center(
                   child: CircularProgressIndicator(),
@@ -188,26 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   sectionTitle: "Category",
                   items: category,
                 ),
-              // CardSection(
-              //   sectionTitle: "Offers",
-              //   items: const [
-              //     'Buy Clothes starting at 100',
-              //     'Get 5% off ',
-              //     'Get 10% off',
-              //   ],
-              // ),
-              // CardSection(
-              //   sectionTitle: "Hot Favorite",
-              //   isProduct: true,
-              //   items: const [
-              //     'Buy Clothes starting at 100',
-              //     'Get 5% off ',
-              //     'Get 10% off',
-              //   ],
-              // ),
               const ProductSection(),
-              const CustomBannerStatic(),
-              const CustomBannerStatic(),
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-import 'package:ecommerce/Models/ProductModel.dart';
 import 'package:flutter/material.dart';
 import '../Card/card_component.dart';
 import '../Card/category_card_component.dart';
@@ -34,9 +33,18 @@ class _CardSectionState extends State<CardSection> {
                   product: item,
                 );
               } else {
-                return CategoryCardComponent(
-                  category: item.categoryName,
-                  image: item.categoryImage,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      "/categoryPage",
+                      arguments: item,
+                    );
+                  },
+                  child: CategoryCardComponent(
+                    category: item.categoryName,
+                    image: item.categoryImage,
+                  ),
                 );
               }
             }).toList(),
@@ -44,6 +52,7 @@ class _CardSectionState extends State<CardSection> {
         );
       case "gridview":
         return Wrap(
+          crossAxisAlignment: WrapCrossAlignment.start,
           children: widget.items.map((item) {
             if (widget.isProduct) {
               return CardComponent(

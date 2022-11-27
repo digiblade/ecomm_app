@@ -37,29 +37,29 @@ class _RouterPageState extends State<RouterPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: primary,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: 'Home',
             backgroundColor: primary,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: const Icon(Icons.business),
             label: 'Business',
             backgroundColor: primary,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: const Icon(Icons.school),
             label: 'School',
             backgroundColor: primary,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
             label: 'Settings',
             backgroundColor: primary,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.supervised_user_circle),
+            icon: const Icon(Icons.supervised_user_circle),
             label: 'User',
             backgroundColor: primary,
           ),

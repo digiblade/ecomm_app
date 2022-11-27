@@ -1,6 +1,8 @@
 import 'package:ecommerce/Models/CartModel.dart';
 import 'package:ecommerce/Models/DocumentModel.dart';
 import 'package:ecommerce/Models/ProductModel.dart';
+import 'package:ecommerce/Util/Colors.dart';
+import 'package:ecommerce/Util/Space.dart';
 import 'package:flutter/material.dart';
 
 class CardComponent extends StatefulWidget {
@@ -39,95 +41,106 @@ class _CardComponentState extends State<CardComponent> {
         Navigator.pushNamed(context, "/productpage", arguments: widget.product);
       },
       child: Card(
-        child: Container(
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height * 0.2,
-          ),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.3,
           width: MediaQuery.of(context).size.width * 0.4,
           child: Column(
             children: [
-              SizedBox(
-                width: double.infinity,
-                height: 150,
-                child: Image.network(
-                  getPathFromModel(widget.product.docList),
-                  fit: BoxFit.cover,
+              Expanded(
+                flex: 2,
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 150,
+                  child: Image.network(
+                    getPathFromModel(widget.product.docList),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const VerticalSpace(
+                        space: 4,
+                      ),
+                      Expanded(
+                        child: Text(
+                          limitString(widget.product.productName!, 90),
+                          style: const TextStyle(
+                            color: secondary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      const VerticalSpace(
+                        space: 4,
+                      ),
+                      Expanded(
+                        child: Text(
+                          limitString(widget.product.productDescription!, 50),
+                          style: TextStyle(
+                            color: gray,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                          ),
+                          // overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      widget.product.productName!,
-                      style: const TextStyle(
-                        color: Colors.black45,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          "${widget.product.offerPrice} /- ",
+                          style: const TextStyle(
+                            color: secondary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      widget.product.productDescription!,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                    Expanded(
+                      child: InkWell(
+                        onHover: addPadding,
+                        onTap: handleAddToCart,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              bottomLeft: Radius.circular(16),
+                            ),
+                          ),
+                          padding: EdgeInsets.only(right: cardPadding),
+                          child: IconButton(
+                            onPressed: () {
+                              handleAddToCart();
+                            },
+                            icon: const Icon(
+                              Icons.shopping_bag,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    )
                   ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Text(
-                        "${widget.product.offerPrice} /- ",
-                        style: const TextStyle(
-                          color: Colors.greenAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onHover: addPadding,
-                      onTap: handleAddToCart,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            bottomLeft: Radius.circular(16),
-                          ),
-                        ),
-                        padding: EdgeInsets.only(right: cardPadding),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.shopping_bag,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
               ),
               const SizedBox(
                 height: 8,

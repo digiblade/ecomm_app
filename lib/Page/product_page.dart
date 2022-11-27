@@ -1,5 +1,8 @@
+import 'package:ecommerce/Models/CartModel.dart';
 import 'package:ecommerce/Models/DocumentModel.dart';
+import 'package:ecommerce/Models/DrawerPage.dart';
 import 'package:ecommerce/Models/ProductModel.dart';
+import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
 import '../Components/Appbar/app_bar.dart';
 import '../Components/Button/solid_button.dart';
@@ -44,30 +47,44 @@ class _ProductPageState extends State<ProductPage> {
     final product = ModalRoute.of(context)!.settings.arguments! as ProductModel;
     addProductPrice(product.offerPrice);
     return Scaffold(
+      appBar: AppBar(backgroundColor: secondary),
       key: _scaffoldKey,
-      drawer: new Drawer(),
+      drawer: const DrawerPage(),
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
-              child: CustomAppBar(
-                onDrawerOpen: () {
-                  _scaffoldKey.currentState!.openDrawer();
-                },
-              ),
-            ),
-            Expanded(
               flex: 8,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.4,
-                      width: double.infinity,
-                      child: Image.network(
-                        getPathFromModel(product.docList),
-                        fit: BoxFit.cover,
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          ...getPathFromModelScrollView(product.docList)
+                              .map(
+                                (image) => SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(8),
+                                      ),
+                                      child: Image.network(
+                                        getPathFromModel(product.docList),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ],
                       ),
                     ),
                     Padding(
@@ -79,14 +96,15 @@ class _ProductPageState extends State<ProductPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            flex: 3,
+                            flex: 4,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   product.productName!,
                                   style: const TextStyle(
-                                    fontSize: 24,
+                                    fontSize: 20,
+                                    color: secondary,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -96,11 +114,11 @@ class _ProductPageState extends State<ProductPage> {
                           Expanded(
                             flex: 2,
                             child: Container(
-                              padding: const EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(0),
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(
-                                    24,
+                                    20,
                                   ),
                                 ),
                                 color: Colors.white,
@@ -116,7 +134,7 @@ class _ProductPageState extends State<ProductPage> {
                                       icon: const Icon(
                                         Icons.remove,
                                         color: Colors.redAccent,
-                                        size: 32,
+                                        size: 20,
                                       ),
                                     ),
                                   ),
@@ -125,7 +143,7 @@ class _ProductPageState extends State<ProductPage> {
                                     child: Text(
                                       quantity.toString(),
                                       style: const TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w700,
                                       ),
                                       textAlign: TextAlign.center,
@@ -138,7 +156,7 @@ class _ProductPageState extends State<ProductPage> {
                                       icon: const Icon(
                                         Icons.add,
                                         color: Colors.greenAccent,
-                                        size: 32,
+                                        size: 20,
                                       ),
                                     ),
                                   ),
@@ -153,9 +171,9 @@ class _ProductPageState extends State<ProductPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         product.productDescription!,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
-                          fontWeight: FontWeight.w600,
+                          color: black.withOpacity(0.7),
                         ),
                       ),
                     )
@@ -186,9 +204,11 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                     Expanded(
                       child: SolidButton(
-                        label: "Checkout",
-                        onPressed: () {},
-                        color: Colors.greenAccent,
+                        label: "Add to cart",
+                        onPressed: () async {
+                          await addToCartByAPI(product, count: quantity);
+                        },
+                        color: secondary,
                       ),
                     )
                   ],
