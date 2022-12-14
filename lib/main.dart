@@ -9,6 +9,7 @@ import 'package:ecommerce/Page/address_page.dart';
 import 'package:ecommerce/Page/cart_page.dart';
 import 'package:ecommerce/Page/category_page.dart';
 import 'package:ecommerce/Page/checkout_page.dart';
+import 'package:ecommerce/Page/displaystatus_page.dart';
 import 'package:ecommerce/Page/order_page.dart';
 import 'package:ecommerce/Page/order_response_page.dart';
 import 'package:ecommerce/Util/Colors.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
           "/app": (context) => const MyHomePage(title: "Home"),
           "/login": (context) => const LoginPage(),
           "/registration": (context) => const RegistrationPage(),
-          "/productpage": (context) => ProductPage(),
+
           "/cartpage": (context) => const CartPage(),
           "/addresspage": (context) => const AddressPage(),
           "/checkoutpage": (context) => const CheckoutPage(),
@@ -55,10 +56,11 @@ class MyApp extends StatelessWidget {
               ),
           "/responsefailpage": (context) => OrderResponsePage(type: "failure"),
           "/responseerrorpage": (context) => OrderResponsePage(),
-          "/googlemap": (context) => GoogleMapPage(),
+          // "/googlemap": (context) => GoogleMapPage(),
           "/categoryPage": (context) =>
               CategoryProductPage(cat: settings.arguments as CategoryModel),
-          "/viewOrderPage": ((context) => const DisplayOrderPage())
+          "/viewOrderPage": ((context) => const DisplayOrderPage()),
+          "/displaystatus": ((context) => DisplayStatusPage())
         };
         WidgetBuilder? builder = routes[settings.name!];
 
@@ -66,7 +68,9 @@ class MyApp extends StatelessWidget {
             builder: (ctx) =>
                 builder != null ? builder(ctx) : const NotFoundPage());
       },
-      routes: {},
+      routes: {
+        "/productpage": (context) => ProductPage(),
+      },
     );
   }
 }

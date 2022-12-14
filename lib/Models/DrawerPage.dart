@@ -15,7 +15,6 @@ class _DrawerPageState extends State<DrawerPage> {
   String email = "-";
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     LocalStorage storage = LocalStorage("auth.json");
     dynamic data = storage.getItem("userDetails");
@@ -62,6 +61,12 @@ class _DrawerPageState extends State<DrawerPage> {
               title: const Text('Cart'),
               onTap: () {
                 Navigator.pushNamed(context, "/cartpage");
+              },
+            ),
+            ListTile(
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pushNamed(context, "/app");
               },
             ),
             ListTile(

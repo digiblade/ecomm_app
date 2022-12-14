@@ -37,7 +37,13 @@ class _OrderDisplayCardState extends State<OrderDisplayCard> {
                 ),
                 Expanded(
                   child: SolidButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        "/displaystatus",
+                        arguments: widget.order,
+                      );
+                    },
                     label: "Track Order",
                   ),
                 )

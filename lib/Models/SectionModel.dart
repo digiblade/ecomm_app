@@ -17,7 +17,7 @@ Future<List<SectionModel>> getAllSection() async {
       dynamic productList = sectionRes['products'];
       List<ProductModel> prodList = [];
       for (dynamic product in productList) {
-        dynamic prodDetails = product['product'];
+        dynamic prodDetails = product['product'] ?? {};
         List<DocumentModel> docList =
             getDocuments(prodDetails['documents'] ?? []);
         ProductModel prod = ProductModel(

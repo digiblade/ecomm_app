@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-const appURL = "http://10.0.2.2:8000/api";
-const imageURL = "http://10.0.2.2:8000/documents/";
+const appURL = "http://api.houseofcolors.co.in/api";
+const imageURL = "http://api.houseofcolors.co.in/documents/";
 httpGet(String url) async {
   Dio dio = Dio();
   dynamic res = await dio.get(appURL + url);

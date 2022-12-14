@@ -69,7 +69,7 @@ class _CardComponentState extends State<CardComponent> {
                       ),
                       Expanded(
                         child: Text(
-                          limitString(widget.product.productName!, 90),
+                          limitString(widget.product.productName ?? "", 90),
                           style: const TextStyle(
                             color: secondary,
                             fontWeight: FontWeight.bold,
@@ -82,7 +82,8 @@ class _CardComponentState extends State<CardComponent> {
                       ),
                       Expanded(
                         child: Text(
-                          limitString(widget.product.productDescription!, 50),
+                          limitString(
+                              widget.product.productDescription ?? "", 50),
                           style: TextStyle(
                             color: gray,
                             fontWeight: FontWeight.bold,
