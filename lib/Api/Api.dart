@@ -51,6 +51,5 @@ httpPost(
         backgroundColor: Colors.yellow,
       );
     }
-    print("error $e");
   }
 }

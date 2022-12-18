@@ -1,10 +1,10 @@
-import 'package:ecommerce/Component2/Buttons/SolidButton.dart';
+import 'package:ecommerce/Component2/Buttons/solid_button.dart';
 import 'package:ecommerce/Components/Card/cart_card.dart';
-import 'package:ecommerce/Models/OrderModel.dart';
-import 'package:ecommerce/Models/ProductModel.dart';
+import 'package:ecommerce/Models/order_model.dart';
 import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class OrderDisplayCard extends StatefulWidget {
   OrderModel? order;
   OrderDisplayCard({super.key, this.order});
@@ -41,7 +41,7 @@ class _OrderDisplayCardState extends State<OrderDisplayCard> {
                       Navigator.pushNamed(
                         context,
                         "/displaystatus",
-                        arguments: widget.order,
+                        arguments: widget.order!.orderId ?? "",
                       );
                     },
                     label: "Track Order",

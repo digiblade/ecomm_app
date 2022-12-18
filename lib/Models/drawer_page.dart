@@ -1,4 +1,4 @@
-import 'package:ecommerce/Auth/Auth.helper/Auth.helper.dart';
+import 'package:ecommerce/Auth/Auth.helper/auth.helper.dart';
 import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
@@ -75,10 +75,10 @@ class _DrawerPageState extends State<DrawerPage> {
                 Navigator.pushNamed(context, "/viewOrderPage");
               },
             ),
-            ListTile(
-              title: const Text('Manage Profile'),
-              onTap: () {},
-            ),
+            // ListTile(
+            //   title: const Text('Manage Profile'),
+            //   onTap: () {},
+            // ),
             ListTile(
               title: const Text('Manage Addresses'),
               onTap: () {

@@ -1,10 +1,11 @@
-import 'package:ecommerce/Component2/Buttons/SolidButton.dart';
-import 'package:ecommerce/Component2/Input/InputField.dart';
-import 'package:ecommerce/Models/AddressModel.dart';
+import 'package:ecommerce/Component2/Buttons/solid_button.dart';
+import 'package:ecommerce/Component2/Input/input_field.dart';
+import 'package:ecommerce/Models/address_model.dart';
 import 'package:ecommerce/Util/Colors.dart';
-import 'package:ecommerce/Util/Space.dart';
+import 'package:ecommerce/Util/space.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AddressCard extends StatefulWidget {
   AddressModel? address;
   void Function() onEditDone;
@@ -157,7 +158,7 @@ class _AddressCardState extends State<AddressCard> {
                                       const Text(
                                         'Update your address',
                                         style: TextStyle(
-                                          color: primary,
+                                          color: secondary,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
                                         ),
@@ -187,7 +188,7 @@ class _AddressCardState extends State<AddressCard> {
                                         width: double.infinity,
                                         child: SolidButton(
                                           onPressed: updateAddressData,
-                                          color: primary,
+                                          color: secondary,
                                           label: "Update",
                                         ),
                                       ),
@@ -206,7 +207,7 @@ class _AddressCardState extends State<AddressCard> {
                       },
                       icon: const Icon(
                         Icons.edit,
-                        color: primary,
+                        color: secondary,
                       ),
                     ),
                   if (widget.showDelete)

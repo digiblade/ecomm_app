@@ -1,10 +1,10 @@
-import 'package:ecommerce/Auth/Auth.helper/Auth.helper.dart';
+import 'package:ecommerce/Auth/Auth.helper/auth.helper.dart';
 
-import '../Component2/Buttons/SolidButton.dart';
-import '../Component2/Input/InputField.dart';
+import '../Component2/Buttons/solid_button.dart';
+import '../Component2/Input/input_field.dart';
 import '../Util/Colors.dart';
 import 'package:flutter/material.dart';
-import '../Util/Space.dart';
+import '../Util/space.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);

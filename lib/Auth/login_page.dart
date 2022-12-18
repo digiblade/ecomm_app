@@ -1,9 +1,9 @@
-import '../Component2/Buttons/SolidButton.dart';
-import '../Component2/Input/InputField.dart';
+import '../Component2/Buttons/solid_button.dart';
+import '../Component2/Input/input_field.dart';
 import '../Util/Colors.dart';
 import 'package:flutter/material.dart';
-import '../Util/Space.dart';
-import 'Auth.helper/Auth.helper.dart';
+import '../Util/space.dart';
+import 'Auth.helper/auth.helper.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primary,
+      backgroundColor: secondary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                   label: "Login",
-                  color: secondary,
+                  color: primary,
                 ),
               ),
               Row(

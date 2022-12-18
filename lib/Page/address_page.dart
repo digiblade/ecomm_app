@@ -1,11 +1,11 @@
-import 'package:ecommerce/Component2/Buttons/SolidButton.dart';
-import 'package:ecommerce/Component2/Input/InputField.dart';
-import 'package:ecommerce/Components/Appbar/app_bar.dart';
+import 'package:ecommerce/Component2/Buttons/solid_button.dart';
+import 'package:ecommerce/Component2/Input/input_field.dart';
+// import 'package:ecommerce/Components/Appbar/app_bar.dart';
 import 'package:ecommerce/Components/Card/address_card.dart';
-import 'package:ecommerce/Models/AddressModel.dart';
-import 'package:ecommerce/Models/DrawerPage.dart';
+import 'package:ecommerce/Models/address_model.dart';
+import 'package:ecommerce/Models/drawer_page.dart';
 import 'package:ecommerce/Util/Colors.dart';
-import 'package:ecommerce/Util/Space.dart';
+import 'package:ecommerce/Util/space.dart';
 import 'package:flutter/material.dart';
 
 class AddressPage extends StatefulWidget {
@@ -68,7 +68,7 @@ class _AddressPageState extends State<AddressPage> {
       child: Scaffold(
         appBar: AppBar(backgroundColor: secondary),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: primary,
+          backgroundColor: secondary,
           onPressed: () {
             showModalBottomSheet<void>(
               context: context,
@@ -103,7 +103,7 @@ class _AddressPageState extends State<AddressPage> {
                           const Text(
                             'Add your address',
                             style: TextStyle(
-                              color: primary,
+                              color: secondary,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
@@ -133,7 +133,7 @@ class _AddressPageState extends State<AddressPage> {
                             width: double.infinity,
                             child: SolidButton(
                               onPressed: addAddressData,
-                              color: primary,
+                              color: secondary,
                               label: "Add",
                             ),
                           ),
@@ -162,14 +162,23 @@ class _AddressPageState extends State<AddressPage> {
                 flex: 8,
                 child: SingleChildScrollView(
                   child: Column(
-                    children: addressList
-                        .map(
-                          (AddressModel address) => AddressCard(
-                            address: address,
-                            onEditDone: getAddressData,
+                    children: [
+                      ...addressList
+                          .map(
+                            (AddressModel address) => AddressCard(
+                              address: address,
+                              onEditDone: getAddressData,
+                            ),
+                          )
+                          .toList(),
+                      if (addressList.isEmpty)
+                        const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("No address found"),
                           ),
                         )
-                        .toList(),
+                    ],
                   ),
                 ),
               ),

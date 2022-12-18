@@ -1,8 +1,8 @@
-import 'package:ecommerce/Api/Api.dart';
-import 'package:ecommerce/Models/DocumentModel.dart';
-import 'package:ecommerce/Models/ProductModel.dart';
+import 'package:ecommerce/Api/api.dart';
+import 'package:ecommerce/Models/document_model.dart';
+import 'package:ecommerce/Models/product_model.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class CartModel {
   ProductModel? product;
@@ -58,10 +58,10 @@ addToCart(ProductModel product) {
 }
 
 getCart() {
-  List<CartModel> cartList = [];
+  // List<CartModel> cartList = [];
   try {
     final storage = LocalStorage('cartdata.json');
-    Map<String, dynamic> cartJSON = storage.getItem("cartJSON") ?? {};
+    storage.getItem("cartJSON") ?? {};
     return true;
   } catch (e) {
     return false;
@@ -103,6 +103,9 @@ Future<List<CartModel>> getCartByAPI() async {
   });
   List<CartModel> cartList = [];
   for (dynamic cartData in res) {
+    if (cartData['product'] == null) {
+      continue;
+    }
     List<DocumentModel> docList = [];
     for (dynamic document in cartData['product']['documents']) {
       DocumentModel doc = DocumentModel(

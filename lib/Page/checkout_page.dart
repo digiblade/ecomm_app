@@ -1,14 +1,14 @@
-import 'package:ecommerce/Component2/Buttons/SolidButton.dart';
+import 'package:ecommerce/Component2/Buttons/solid_button.dart';
 import 'package:ecommerce/Components/Card/address_card.dart';
 import 'package:ecommerce/Components/Card/cart_card.dart';
 import 'package:ecommerce/Components/Card/total_card.dart';
-import 'package:ecommerce/Models/AddressModel.dart';
-import 'package:ecommerce/Models/CartModel.dart';
-import 'package:ecommerce/Models/DrawerPage.dart';
-import 'package:ecommerce/Models/OrderModel.dart';
-import 'package:ecommerce/Models/ProductModel.dart';
+import 'package:ecommerce/Models/address_model.dart';
+import 'package:ecommerce/Models/cart_model.dart';
+import 'package:ecommerce/Models/drawer_page.dart';
+import 'package:ecommerce/Models/order_model.dart';
+// import 'package:ecommerce/Models/product_model.dart';
 import 'package:ecommerce/Util/Colors.dart';
-import 'package:ecommerce/Util/Space.dart';
+import 'package:ecommerce/Util/space.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -38,6 +38,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       setState(() {
         addressList = addList;
       });
+      // ignore: empty_catches
     } catch (e) {}
   }
 
@@ -62,7 +63,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   renderSteps() {
     return stepList.map((e) {
       return CircleAvatar(
-        backgroundColor: e < activeState ? primary : gray,
+        backgroundColor: e < activeState ? secondary : gray,
         child: Text(
           "$e",
           style: TextStyle(
@@ -222,7 +223,6 @@ class AddressSelectionPageState extends State<AddressSelectionPage> {
   String? addressId = "";
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (widget.addressList.isNotEmpty) {
       String tempAddressId = widget.addressList[0].addressUid!;
@@ -241,23 +241,29 @@ class AddressSelectionPageState extends State<AddressSelectionPage> {
           flex: 7,
           child: SingleChildScrollView(
             child: Column(
-              children: widget.addressList
-                  .map(
-                    (e) => AddressCard(
-                      onEditDone: () {},
-                      addressId: addressId != ""
-                          ? addressId
-                          : (widget.addressList.isNotEmpty)
-                              ? widget.addressList[0].addressUid!
-                              : "",
-                      select: true,
-                      address: e,
-                      onSelect: (value) {
-                        widget.onAddressSelect!(value);
-                      },
-                    ),
+              children: [
+                ...widget.addressList
+                    .map(
+                      (e) => AddressCard(
+                        onEditDone: () {},
+                        addressId: addressId != ""
+                            ? addressId
+                            : (widget.addressList.isNotEmpty)
+                                ? widget.addressList[0].addressUid!
+                                : "",
+                        select: true,
+                        address: e,
+                        onSelect: (value) {
+                          widget.onAddressSelect!(value);
+                        },
+                      ),
+                    )
+                    .toList(),
+                if (widget.addressList.isEmpty)
+                  const Center(
+                    child: Text("No Address found please add address first"),
                   )
-                  .toList(),
+              ],
             ),
           ),
         ),
@@ -265,11 +271,18 @@ class AddressSelectionPageState extends State<AddressSelectionPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SolidButton(
-                onPressed: widget.onNextStep,
-                label: "Next",
-                color: secondary,
-              )
+              if (widget.addressList.isNotEmpty)
+                SolidButton(
+                  onPressed: widget.onNextStep,
+                  label: "Next",
+                  color: secondary,
+                ),
+              if (widget.addressList.isEmpty)
+                SolidButton(
+                  onPressed: () {},
+                  label: "Next",
+                  color: gray,
+                )
             ],
           ),
         )
@@ -278,6 +291,7 @@ class AddressSelectionPageState extends State<AddressSelectionPage> {
   }
 }
 
+// ignore: must_be_immutable
 class PaymentModeSelectionPage extends StatefulWidget {
   int? activeState;
   Function()? onNextStep;

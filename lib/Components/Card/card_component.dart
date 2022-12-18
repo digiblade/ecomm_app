@@ -1,10 +1,11 @@
-import 'package:ecommerce/Models/CartModel.dart';
-import 'package:ecommerce/Models/DocumentModel.dart';
-import 'package:ecommerce/Models/ProductModel.dart';
+import 'package:ecommerce/Models/cart_model.dart';
+import 'package:ecommerce/Models/document_model.dart';
+import 'package:ecommerce/Models/product_model.dart';
 import 'package:ecommerce/Util/Colors.dart';
-import 'package:ecommerce/Util/Space.dart';
+import 'package:ecommerce/Util/space.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CardComponent extends StatefulWidget {
   ProductModel product;
   CardComponent({
@@ -31,7 +32,7 @@ class _CardComponentState extends State<CardComponent> {
   }
 
   handleAddToCart() {
-    bool res = addToCart(widget.product);
+    addToCart(widget.product);
   }
 
   @override

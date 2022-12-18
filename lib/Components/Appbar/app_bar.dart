@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget {
   Function onDrawerOpen;
   CustomAppBar({Key? key, required this.onDrawerOpen}) : super(key: key);

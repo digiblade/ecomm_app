@@ -1,9 +1,10 @@
-import 'package:ecommerce/Component2/Buttons/SolidButton.dart';
-import 'package:ecommerce/Models/DrawerPage.dart';
+import 'package:ecommerce/Component2/Buttons/solid_button.dart';
+import 'package:ecommerce/Models/drawer_page.dart';
 import 'package:ecommerce/Util/Colors.dart';
-import 'package:ecommerce/Util/Space.dart';
+import 'package:ecommerce/Util/space.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class OrderResponsePage extends StatefulWidget {
   String type;
   OrderResponsePage({
@@ -71,7 +72,9 @@ class _SuccessState extends State<Success> {
             space: 16,
           ),
           SolidButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, "/");
+            },
             label: "Go to home page",
             color: secondary,
           )

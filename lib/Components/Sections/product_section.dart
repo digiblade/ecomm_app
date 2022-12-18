@@ -1,7 +1,7 @@
 import 'package:ecommerce/Components/Sections/card_section.dart';
-import 'package:ecommerce/Models/SectionModel.dart';
+import 'package:ecommerce/Models/section_model.dart';
 import 'package:flutter/material.dart';
-import "card_section.dart";
+// import "card_section.dart";
 
 class ProductSection extends StatefulWidget {
   const ProductSection({Key? key}) : super(key: key);

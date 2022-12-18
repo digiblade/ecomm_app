@@ -7,6 +7,7 @@ class InputField extends StatefulWidget {
   final String hint;
   final bool isPassword;
   final TextInputType type;
+  final Function(dynamic)? onChange;
   const InputField({
     Key? key,
     this.controller,
@@ -14,6 +15,7 @@ class InputField extends StatefulWidget {
     this.hint = "",
     this.isPassword = false,
     this.type = TextInputType.text,
+    this.onChange,
   }) : super(key: key);
 
   @override
@@ -34,6 +36,10 @@ class _InputFieldState extends State<InputField> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: TextField(
+          onChanged: (val) {
+            dynamic func = widget.onChange ?? (val) {};
+            func(val);
+          },
           obscureText: widget.isPassword ? !isShow : false,
           controller: widget.controller,
           keyboardType: widget.type,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../Card/card_component.dart';
+// import '../Card/card_component.dart';
 
-import 'category_card_component.dart';
+// import 'category_card_component.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({Key? key}) : super(key: key);

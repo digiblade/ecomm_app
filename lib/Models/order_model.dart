@@ -1,7 +1,7 @@
-import 'package:ecommerce/Api/Api.dart';
-import 'package:ecommerce/Models/CartModel.dart';
-import 'package:ecommerce/Models/DocumentModel.dart';
-import 'package:ecommerce/Models/ProductModel.dart';
+import 'package:ecommerce/Api/api.dart';
+import 'package:ecommerce/Models/cart_model.dart';
+import 'package:ecommerce/Models/document_model.dart';
+import 'package:ecommerce/Models/product_model.dart';
 import 'package:localstorage/localstorage.dart';
 
 class OrderModel {
@@ -63,6 +63,9 @@ Future<List<OrderModel>> getOrder() async {
   for (dynamic order in res) {
     List<CartModel> cartData = [];
     for (dynamic section in order['section']) {
+      if (section['product'] == null) {
+        continue;
+      }
       dynamic product = section['product'];
       List<DocumentModel> docs = getDocuments(product['documents']);
 

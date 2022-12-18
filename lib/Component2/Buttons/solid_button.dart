@@ -5,7 +5,7 @@ class SolidButton extends StatelessWidget {
   final Function()? onPressed;
   final String label;
   final Color color;
-  SolidButton({
+  const SolidButton({
     Key? key,
     required this.onPressed,
     this.label = "",

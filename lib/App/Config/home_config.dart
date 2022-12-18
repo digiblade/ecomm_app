@@ -1,11 +1,10 @@
-// ignore: file_names
 import 'dart:convert';
-import 'package:ecommerce/App/Organism/ProductSlider.dart';
-import 'package:ecommerce/Util/Space.dart';
+import 'package:ecommerce/App/Organism/product_slider.dart';
+import 'package:ecommerce/Util/space.dart';
 
-import '/App/Organism/BannerPanel.dart';
-import '/App/Organism/SearchPanel.dart';
-import '/App/Organism/UserProfileCard.dart';
+import '../Organism/banner_panel.dart';
+import '../Organism/search_panel.dart';
+import '../Organism/user_profile_card.dart';
 import 'package:flutter/material.dart';
 
 String jsonToString() {

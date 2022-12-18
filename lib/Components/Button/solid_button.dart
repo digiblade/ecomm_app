@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SolidButton extends StatelessWidget {
   Color color;
   String label;

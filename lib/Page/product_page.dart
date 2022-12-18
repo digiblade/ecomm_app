@@ -1,14 +1,14 @@
-import 'package:ecommerce/Models/CartModel.dart';
-import 'package:ecommerce/Models/DocumentModel.dart';
-import 'package:ecommerce/Models/DrawerPage.dart';
-import 'package:ecommerce/Models/ProductModel.dart';
+import 'package:ecommerce/Models/cart_model.dart';
+import 'package:ecommerce/Models/document_model.dart';
+import 'package:ecommerce/Models/drawer_page.dart';
+import 'package:ecommerce/Models/product_model.dart';
 import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
-import '../Components/Appbar/app_bar.dart';
+// import '../Components/Appbar/app_bar.dart';
 import '../Components/Button/solid_button.dart';
 
 class ProductPage extends StatefulWidget {
-  ProductPage({Key? key}) : super(key: key);
+  const ProductPage({Key? key}) : super(key: key);
 
   @override
   State<ProductPage> createState() => _ProductPageState();

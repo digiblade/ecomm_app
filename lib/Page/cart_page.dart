@@ -1,10 +1,10 @@
 import 'package:ecommerce/Components/Card/cart_card.dart';
-import 'package:ecommerce/Models/CartModel.dart';
-import 'package:ecommerce/Models/DrawerPage.dart';
-import 'package:ecommerce/Page/address_page.dart';
+import 'package:ecommerce/Models/cart_model.dart';
+import 'package:ecommerce/Models/drawer_page.dart';
+// import 'package:ecommerce/Page/address_page.dart';
 import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
-import '../Components/Appbar/app_bar.dart';
+// import '../Components/Appbar/app_bar.dart';
 import '../Components/Button/solid_button.dart';
 
 class CartPage extends StatefulWidget {
@@ -15,7 +15,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List<CartModel> cartItems = [];
   int quantity = 1;
   double price = 0;

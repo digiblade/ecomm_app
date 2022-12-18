@@ -1,4 +1,4 @@
-import 'package:ecommerce/Api/Api.dart';
+import 'package:ecommerce/Api/api.dart';
 import 'package:localstorage/localstorage.dart';
 
 class AddressModel {

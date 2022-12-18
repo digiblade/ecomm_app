@@ -1,9 +1,9 @@
-import 'package:ecommerce/App/Pages/HomePage.dart';
-import 'package:ecommerce/Auth/LoginPage.dart';
-import 'package:ecommerce/Auth/RegistrationPage.dart';
+// import 'package:ecommerce/App/Pages/home_page.dart';
+import 'package:ecommerce/Auth/login_page.dart';
+import 'package:ecommerce/Auth/registration_page.dart';
 import 'package:ecommerce/Components/Sections/product_section.dart';
-import 'package:ecommerce/Models/CategoryModel.dart';
-import 'package:ecommerce/Models/DrawerPage.dart';
+import 'package:ecommerce/Models/category_model.dart';
+import 'package:ecommerce/Models/drawer_page.dart';
 import 'package:ecommerce/Page/404page.dart';
 import 'package:ecommerce/Page/address_page.dart';
 import 'package:ecommerce/Page/cart_page.dart';
@@ -12,17 +12,18 @@ import 'package:ecommerce/Page/checkout_page.dart';
 import 'package:ecommerce/Page/displaystatus_page.dart';
 import 'package:ecommerce/Page/order_page.dart';
 import 'package:ecommerce/Page/order_response_page.dart';
+import 'package:ecommerce/Page/search_page.dart';
 import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'Components/Banner/custom_banner_static.dart';
-import 'Components/Card/category_card.dart';
+// import 'Components/Banner/custom_banner_static.dart';
+// import 'Components/Card/category_card.dart';
 import 'Components/Sections/card_section.dart';
-import 'Page/google_map_page.dart';
+// import 'Page/google_map_page.dart';
 import 'Page/product_page.dart';
 
-import 'Components/Appbar/app_bar.dart';
-import 'Components/Card/category_card_component.dart';
+// import 'Components/Appbar/app_bar.dart';
+// import 'Components/Card/category_card_component.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WaitingPage(),
+      home: const WaitingPage(),
       onGenerateRoute: (RouteSettings settings) {
         var routes = <String, WidgetBuilder>{
           "/app": (context) => const MyHomePage(title: "Home"),
@@ -60,7 +61,10 @@ class MyApp extends StatelessWidget {
           "/categoryPage": (context) =>
               CategoryProductPage(cat: settings.arguments as CategoryModel),
           "/viewOrderPage": ((context) => const DisplayOrderPage()),
-          "/displaystatus": ((context) => DisplayStatusPage())
+          "/displaystatus": ((context) => DisplayStatusPage(
+                orderId: settings.arguments as String,
+              )),
+          "/searchPage": ((context) => SearchPage())
         };
         WidgetBuilder? builder = routes[settings.name!];
 
@@ -69,7 +73,7 @@ class MyApp extends StatelessWidget {
                 builder != null ? builder(ctx) : const NotFoundPage());
       },
       routes: {
-        "/productpage": (context) => ProductPage(),
+        "/productpage": (context) => const ProductPage(),
       },
     );
   }
@@ -160,7 +164,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(backgroundColor: secondary),
+      appBar: AppBar(
+        backgroundColor: secondary,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/searchPage");
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
+      ),
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       drawer: const DrawerPage(),
       body: SafeArea(

@@ -1,5 +1,5 @@
 // ignore: file_names
-import "DocumentModel.dart";
+import 'document_model.dart';
 
 class ProductModel {
   String? productName;

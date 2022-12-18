@@ -1,7 +1,8 @@
-import 'package:ecommerce/Models/CartModel.dart';
+import 'package:ecommerce/Models/cart_model.dart';
 import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class TotalCard extends StatefulWidget {
   List<CartModel> productList;
   TotalCard({
