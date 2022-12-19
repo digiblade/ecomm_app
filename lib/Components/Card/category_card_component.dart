@@ -1,6 +1,6 @@
-import 'package:ecommerce/Util/consturl.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CategoryCardComponent extends StatefulWidget {
   String? category;
   String? image;

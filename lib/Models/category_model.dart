@@ -1,5 +1,5 @@
-import "../Api/Api.dart";
-import "../Util/consturl.dart";
+import '../Api/api.dart';
+// import "../Util/consturl.dart";
 
 class CategoryModel {
   String? categoryName;
@@ -19,7 +19,7 @@ Future<List<CategoryModel>> getAllCategory() async {
         CategoryModel categoryElement = CategoryModel(
           categoryName: categoryRes['category_name'],
           categoryImage: '$imageURL$imageLabel/$imageName',
-          categoryId: '$categoryRes["category_id"]',
+          categoryId: '${categoryRes["category_id"]}',
         );
         category.add(categoryElement);
       } else {

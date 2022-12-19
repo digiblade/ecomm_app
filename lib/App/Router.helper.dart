@@ -1,4 +1,4 @@
-import 'package:ecommerce/App/Pages/HomePage.dart';
+import 'package:ecommerce/App/Pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 const routeList = ["/home", "/about", "/product"];

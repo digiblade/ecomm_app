@@ -1,4 +1,4 @@
-import '../../Api/Api.dart';
+import '../../Api/api.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,7 +13,7 @@ registerClient(Map<String, dynamic> payload) async {
 
 loginClient(Map<String, dynamic> payload) async {
   dynamic data = await httpPost("/client/checkUser", payload);
-  if (data != false) {
+  if (data['response'] != false) {
     LocalStorage storage = LocalStorage("auth.json");
     storage.setItem("userDetails", data);
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -22,4 +22,17 @@ loginClient(Map<String, dynamic> payload) async {
   } else {
     return false;
   }
+}
+
+logoutClient() async {
+  // if (data['response'] != false) {
+  LocalStorage storage = LocalStorage("auth.json");
+  storage.setItem("userDetails", {});
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  pref.setBool("isLoggedIn", false);
+
+  return true;
+  // } else {
+  //   return false;
+  // }
 }

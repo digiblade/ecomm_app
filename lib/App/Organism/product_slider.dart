@@ -1,4 +1,4 @@
-import 'package:ecommerce/App/Molecule/ProductCard.dart';
+import 'package:ecommerce/App/Molecule/product_card.dart';
 import 'package:flutter/material.dart';
 
 class ProductSlider extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:ecommerce/Util/Colors.dart';
-import 'package:ecommerce/Util/Space.dart';
+import 'package:ecommerce/Util/space.dart';
 import 'package:flutter/material.dart';
 
 class UserProfileCard extends StatefulWidget {
@@ -24,7 +24,7 @@ class _UserProfileCardState extends State<UserProfileCard> {
                 flex: 4,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Welcome",
                       style: TextStyle(
@@ -33,10 +33,10 @@ class _UserProfileCardState extends State<UserProfileCard> {
                         color: gray,
                       ),
                     ),
-                    VerticalSpace(
+                    const VerticalSpace(
                       space: 8,
                     ),
-                    Text(
+                    const Text(
                       "Akash Chourasia",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -49,9 +49,9 @@ class _UserProfileCardState extends State<UserProfileCard> {
               Expanded(
                 flex: 1,
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: gray,
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(
                         16,
                       ),

@@ -1,1 +1,1 @@
-const imageurl = "http://10.0.2.2:8000/documents/";
+const imageurl = "http://api.houseofcolors.co.in/documents/";

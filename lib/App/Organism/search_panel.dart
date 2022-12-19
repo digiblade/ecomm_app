@@ -1,4 +1,4 @@
-import 'package:ecommerce/Component2/Input/InputField.dart';
+import 'package:ecommerce/Component2/Input/input_field.dart';
 import 'package:ecommerce/Util/Colors.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +26,7 @@ class _SearchPanelState extends State<SearchPanel> {
               flex: 1,
               child: CircleAvatar(
                 radius: 30,
-                backgroundColor: primary,
+                backgroundColor: secondary,
                 child: IconButton(
                   color: Colors.white,
                   onPressed: () {},

@@ -36,32 +36,32 @@ class _RouterPageState extends State<RouterPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: primary,
+        backgroundColor: secondary,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: primary,
+            backgroundColor: secondary,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
             label: 'Business',
-            backgroundColor: primary,
+            backgroundColor: secondary,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
             label: 'School',
-            backgroundColor: primary,
+            backgroundColor: secondary,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
-            backgroundColor: primary,
+            backgroundColor: secondary,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.supervised_user_circle),
             label: 'User',
-            backgroundColor: primary,
+            backgroundColor: secondary,
           ),
         ],
         currentIndex: _selectedIndex,

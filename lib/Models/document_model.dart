@@ -28,7 +28,7 @@ List<DocumentModel> getDocuments(apiDocList) {
 }
 
 getPathFromModel(List<DocumentModel> docs) {
-  if (docs.length > 0) {
+  if (docs.isNotEmpty) {
     DocumentModel doc = docs[0];
     String? label = doc.documentLabel;
     String? name = doc.documentName;
@@ -36,4 +36,15 @@ getPathFromModel(List<DocumentModel> docs) {
     return path;
   }
   return "";
+}
+
+getPathFromModelScrollView(List<DocumentModel> docs) {
+  List imagePath = [];
+  for (DocumentModel doc in docs) {
+    String? label = doc.documentLabel;
+    String? name = doc.documentName;
+    String path = "$imageurl$label/$name";
+    imagePath.add(path);
+  }
+  return imagePath;
 }
